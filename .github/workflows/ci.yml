@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Python version
         run: |
-          python3
+          python3.9
     
 
   run-test-python:
