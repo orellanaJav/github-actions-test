@@ -30,3 +30,9 @@ jobs:
           from datetime import datetime
           print(datetime.now())
        shell: python
+
+     - name: Test file
+       run: |
+          python stack_project_1/services/project_1/lambda_1/test_name_function.py
+       
+       
