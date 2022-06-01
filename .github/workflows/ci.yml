@@ -34,5 +34,15 @@ jobs:
      - name: Test file
        run: |
           python stack_project_1/services/project_1/lambda_1/test_name_function.py
+  
+  send-slack-message:
+    runs-on: ubuntu-latest
+    needs: ["run-test-python"]
+    steps:
+      - name: send a slack message
+        uses: docker://technosophos/slack-notify
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: 'Test passed'
        
        
