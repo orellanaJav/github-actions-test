@@ -7,4 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test action
-        run: echo Hola Mundo!        
+        run: echo Hola Mundo!
+  
+  run-test-python:
+   runs-on: ubuntu-latest
+   steps:
+     - name: test python       
+       run: |
+         echo Holi
