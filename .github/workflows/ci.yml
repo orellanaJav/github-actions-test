@@ -40,6 +40,14 @@ jobs:
         uses: docker://technosophos/slack-notify
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: 'Test passed'
+          SLACK_MESSAGE: 'Ready to merge'
+  
+  deploy-to-aws:
+    runs-on: ubuntu-latest
+    needs: ["run-test-python"]
+    steps:
+      - name: Deploy
+        run: |
+          echo Deploy with serverless
        
        
