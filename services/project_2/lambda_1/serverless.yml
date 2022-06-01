@@ -1,0 +1,11 @@
+custom:
+  baseName: ${opt:stage}-${self:service}
+frameworkVersion: "3"
+functions:
+  servicea:
+    handler: lambda_1.handler
+    name: ${self:custom.baseName}
+provider:
+  name: aws
+  runtime: python3.9
+service: lambda1-project2
