@@ -12,8 +12,9 @@ jobs:
   run-test-python:
    runs-on: ubuntu-latest
    steps:
-     - name: test python
+     - name: Checkout
        uses: actions/checkout@v1
+     - name: Test checkout
        run: |
          pwd
          ls -la
