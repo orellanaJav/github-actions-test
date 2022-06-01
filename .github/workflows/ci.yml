@@ -16,7 +16,8 @@ jobs:
     steps:
       - name: Python version
         run: |
-          python3.9
+          from datetime import datetime
+          print(datetime.now())
     
 
   run-test-python:
