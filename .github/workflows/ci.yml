@@ -12,6 +12,9 @@ jobs:
   run-test-python:
    runs-on: ubuntu-latest
    steps:
-     - name: test python       
+     - name: test python
+       uses: actions/checkout@v1
        run: |
+         pwd
+         ls -la
          echo Holi
