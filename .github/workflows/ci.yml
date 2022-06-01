@@ -9,6 +9,16 @@ jobs:
       - name: test action
         run: echo Hola Mundo!
   
+  python3-docker:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9.0a3-alpine3.10
+    steps:
+      - name: Python version
+        run: |
+          python3
+    
+
   run-test-python:
    runs-on: ubuntu-latest
    steps:
