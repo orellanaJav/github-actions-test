@@ -84,15 +84,15 @@ jobs:
           cd ${{ matrix.folder }}
           pip install pyyaml
           python3.9 merge_yml_files.py
-      # - name: deploy
-      #   working-directory: ${{ matrix.folder }}
-      #   run: npx serverless deploy
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     # AWS_REST_API_ROOT_ID: ${{ secrets.AWS_REST_API_ROOT_ID }}
-      #     # AWS_REST_API_ID: ${{ secrets.AWS_REST_API_ID }}
-      #     # AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+      - name: deploy
+        working-directory: ${{ matrix.folder }}
+        run: npx serverless deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS_REST_API_ROOT_ID: ${{ secrets.AWS_REST_API_ROOT_ID }}
+          # AWS_REST_API_ID: ${{ secrets.AWS_REST_API_ID }}
+          # AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
 
   send-slack-message:
     runs-on: ubuntu-latest
