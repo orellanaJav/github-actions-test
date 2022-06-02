@@ -81,7 +81,8 @@ jobs:
       - run: |
           pwd
           ls -la
-          echo ${{ matrix.folder }}
+          cd ${{ matrix.folder }}
+          python3.9 merge_yml_files.py
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
       #   run: npx serverless deploy
