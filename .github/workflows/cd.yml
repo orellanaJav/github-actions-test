@@ -78,9 +78,7 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.9'          
-      - run: |          
-          current_d = os.getcwd()
-          print(current_d)
+      - run: |                    
           print('hola')
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
