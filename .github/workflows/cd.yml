@@ -74,15 +74,18 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: deploy
-        run: npx serverless deploy
-        working-directory: ${{ matrix.folder }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # AWS_REST_API_ROOT_ID: ${{ secrets.AWS_REST_API_ROOT_ID }}
-          # AWS_REST_API_ID: ${{ secrets.AWS_REST_API_ID }}
-          # AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+        run: |
+          pwd
+          ls -la
+      # - name: deploy
+      #   run: npx serverless deploy
+      #   working-directory: ${{ matrix.folder }}
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     # AWS_REST_API_ROOT_ID: ${{ secrets.AWS_REST_API_ROOT_ID }}
+      #     # AWS_REST_API_ID: ${{ secrets.AWS_REST_API_ID }}
+      #     # AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
 
   send-slack-message:
     runs-on: ubuntu-latest
@@ -92,6 +95,6 @@ jobs:
         uses: docker://technosophos/slack-notify
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: 'Deployed to ${{ secrets.AWS_SECRET_ACCESS_KEY }} region'
+          SLACK_MESSAGE: 'Deployed to ${{ secrets.AWS_REGION }} region'
        
        
