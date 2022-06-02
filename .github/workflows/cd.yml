@@ -79,7 +79,8 @@ jobs:
         with:
           python-version: '3.9'          
       - run: |                    
-          print('hola')
+          pwd
+          ls -la
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
       #   run: npx serverless deploy
