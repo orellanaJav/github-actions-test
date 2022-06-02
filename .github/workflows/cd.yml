@@ -82,6 +82,7 @@ jobs:
           pwd
           ls -la
           cd ${{ matrix.folder }}
+          pip install pyyaml
           python3.9 merge_yml_files.py
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
