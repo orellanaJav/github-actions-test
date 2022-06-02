@@ -2,7 +2,7 @@ provider:
   region: us-east-1
   environment:
     THUMBNAIL_SIZE: "128"
-    DYNAMODB_TABLE: ${self:custom.dynamotable}
+    DYNAMODB_TABLE: Test Table
     REGION_NAME: ${self:provider.region}
 
 iam:
