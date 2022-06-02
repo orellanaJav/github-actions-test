@@ -92,6 +92,6 @@ jobs:
         uses: docker://technosophos/slack-notify
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: 'Deployed'
+          SLACK_MESSAGE: 'Deployed to ${{ secrets.AWS_SECRET_ACCESS_KEY }} region'
        
        
