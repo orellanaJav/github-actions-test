@@ -6,12 +6,56 @@ on:
       - 'dev'
 
 jobs: 
-  deploy-to-aws:
-    runs-on: ubuntu-latest    
+  changes:
+    name: Changes
+    runs-on: ubuntu-latest
+    outputs:
+      folders: ${{ steps.filter.outputs.folders }}
     steps:
-      - name: Deploy
+      - uses: actions/checkout@v2
+      - name: Check changed files
+        id: diff
         run: |
-          echo Deploy with serverless
+          git fetch origin ${{ github.event.before }} --depth=1
+          export DIFF=$( git diff --diff-filter=d --name-only ${{ github.event.before }} $GITHUB_SHA )
+          echo "Diff between ${{ github.event.before }} and $GITHUB_SHA"
+          echo "$DIFF"
+          # Escape newlines (replace \n with %0A)
+          echo "::set-output name=diff::$( echo "$DIFF" | sed ':a;N;$!ba;s/\n/%0A/g' )"
+      - name: Set matrix for build
+        id: filter
+        run: |
+          DIFF="${{ steps.diff.outputs.diff }}"
+
+          if [ -z "$DIFF" ]; then
+            echo "::set-output name=folders::[]"
+          else
+            JSON="["
+            # Loop by lines
+            while read path; do
+              # Set $directory to substring before /
+              directory="$( echo $path | cut -d'/' -f1 -s )"
+
+            # ignore .github folder
+            if [[ "$directory" != ".github" ]]; then
+              # Add build to the matrix only if it is not already included
+              JSONline="\"$directory\","
+              if [[ "$JSON" != *"$JSONline"* ]]; then
+                JSON="$JSON$JSONline"
+              fi
+            fi
+            done <<< "$DIFF"
+
+            # Remove last "," and add closing brackets
+            if [[ $JSON == *, ]]; then
+              JSON="${JSON%?}"
+            fi
+            JSON="$JSON]"
+            echo $JSON
+
+            # Set output
+            echo "::set-output name=folders::$( echo "$JSON" )"
+          fi
 
   send-slack-message:
     runs-on: ubuntu-latest
