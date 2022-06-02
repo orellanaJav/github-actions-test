@@ -56,6 +56,33 @@ jobs:
             # Set output
             echo "::set-output name=folders::$( echo "$JSON" )"
           fi
+  deploy:
+    needs: changes
+    name: Deploy
+    if: ${{ needs.changes.outputs.folders != '[]' && needs.changes.outputs.folders != '' }}
+    strategy:
+      matrix:
+        # Parse JSON array containing names of all filters matching any of changed files
+        # e.g. ['servicea', 'serviceb'] if both package folders contains changes
+        folder: ${{ fromJSON(needs.changes.outputs.folders) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: deploy
+        run: npx serverless deploy
+        working-directory: ${{ matrix.folder }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # AWS_REST_API_ROOT_ID: ${{ secrets.AWS_REST_API_ROOT_ID }}
+          # AWS_REST_API_ID: ${{ secrets.AWS_REST_API_ID }}
+          # AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
 
   send-slack-message:
     runs-on: ubuntu-latest
