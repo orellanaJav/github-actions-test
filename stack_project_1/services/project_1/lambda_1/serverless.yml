@@ -1,6 +1,6 @@
 custom:
   baseName: ${opt:stage}-${self:service}
-frameworkVersion: "3"
+frameworkVersion: '3'
 functions:
   servicea:
     handler: lambda_1.hello

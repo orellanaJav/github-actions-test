@@ -74,14 +74,17 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: test checkout
-        run: |
-          pwd
-          ls -la
-          echo ${{ matrix.folder }}
+      - name: Merge .yml files
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+          architecture: 'x64'
+      - run: |
+          import os
+          print(os.getcwd())
       # - name: deploy
-      #   run: npx serverless deploy
       #   working-directory: ${{ matrix.folder }}
+      #   run: npx serverless deploy
       #   env:
       #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
