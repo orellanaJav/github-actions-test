@@ -74,14 +74,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Merge .yml files
-      - uses: actions/setup-python@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
         with:
-          python-version: '3.9'
-          architecture: 'x64'
+          python-version: '3.9'          
       - run: |
-          import os
-          print(os.getcwd())
+          print('hola')
+        
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
       #   run: npx serverless deploy
