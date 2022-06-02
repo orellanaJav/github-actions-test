@@ -81,7 +81,7 @@ jobs:
       - run: |
           pwd
           ls -la
-          ECHO ${{ matrix.folder }}
+          echo ${{ matrix.folder }}
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
       #   run: npx serverless deploy
