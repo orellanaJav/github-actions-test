@@ -77,11 +77,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.9'          
-        working-directory: ${{ matrix.folder }}
-        run: |                    
+          python-version: '3.9'                  
+      - run: |
           pwd
           ls -la
+          ECHO ${{ matrix.folder }}
       # - name: deploy
       #   working-directory: ${{ matrix.folder }}
       #   run: npx serverless deploy
