@@ -3,7 +3,7 @@ custom:
   baseName: ${self:custom.projectName}-${opt:stage}-${self:service}
 frameworkVersion: '3'
 functions:
-  servicea:
+  servicea-stack2:
     handler: lambda_1.hello
     name: ${self:custom.baseName}
 provider:
@@ -11,4 +11,4 @@ provider:
   runtime: python3.9
   environment:
     test1: hola
-service: lambda1
+service: lambda1-stack2

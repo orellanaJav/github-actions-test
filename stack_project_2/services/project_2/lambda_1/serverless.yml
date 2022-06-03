@@ -3,10 +3,10 @@ custom:
   baseName: ${self:custom.projectName}-${opt:stage}-${self:service}
 frameworkVersion: "3"
 functions:
-  servicea:
+  service-stack-1:
     handler: lambda_1.handler
     name: ${self:custom.baseName}
 provider:
   name: aws
   runtime: python3.9
-service: lambda1
+service: lambda1-stack2
