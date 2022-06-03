@@ -1,6 +1,6 @@
 custom:
   projectName: stack-2-project-2
-  baseName: ${self.projectName}-${opt:stage}-${self:service}
+  baseName: ${self:custom.projectName}-${opt:stage}-${self:service}
 frameworkVersion: "3"
 functions:
   servicea:
