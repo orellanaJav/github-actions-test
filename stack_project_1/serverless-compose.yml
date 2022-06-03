@@ -1,7 +1,9 @@
 services:
   project-1:
-   - path: services/project_1/lambda_1
-   - path: services/project_1/lambda_2
+    path: services/project_1/lambda_1
   
   project-2:
    path: services/project_2/lambda_1
+
+  project-3:
+    path: services/project_1/lambda_2
