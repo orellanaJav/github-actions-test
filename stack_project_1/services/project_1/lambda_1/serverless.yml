@@ -8,4 +8,6 @@ functions:
 provider:
   name: aws
   runtime: python3.9
+  environment:
+    test1: hola
 service: lambda1
