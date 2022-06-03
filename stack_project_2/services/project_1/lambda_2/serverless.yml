@@ -1,0 +1,14 @@
+custom:
+  projectName: stack-2-project-1
+  baseName: ${self.projectName}-${opt:stage}-${self:service}
+frameworkVersion: '3'
+functions:
+  servicea:
+    handler: lambda_2.handler
+    name: ${self:custom.baseName}
+provider:
+  name: aws
+  runtime: python3.9
+  environment:
+    test1: hola_lambda
+service: lambda2
